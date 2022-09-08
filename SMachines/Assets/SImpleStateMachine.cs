@@ -48,6 +48,10 @@ public class SImpleStateMachine : MonoBehaviour
         Vector3 lookAtGoal = new Vector3(destination.position.x, transform.position.y, destination.position.z); //we don't want to move our characters y axis shifting them up or down
         Vector3 lookDir = lookAtGoal - transform.position;
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDir), Time.deltaTime * rotSpeed);
+        //Slerp is a slow way of changing rotation.
+        //Lerp is a slow way of chaning position.
+
+
         //this.transform.LookAt(lookAtGoal);
         if (Vector3.Distance(transform.position, lookAtGoal) > accuracy) //here we use look at goal so that we don't get jittering
         {
@@ -138,7 +142,8 @@ void CheckTransitions()
         
     }
     void Act()
-    {
+    { // switch functionally means if(currentState == State.Eat){do some stuff}
+        //else if{ currentState == State.Eat)
         switch (currentState)
         {
             case State.Reproduce: 
